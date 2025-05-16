@@ -1,0 +1,59 @@
+# Zoom Auto-Join and Record Script
+
+This script joins a Zoom meeting via browser and records it using ffmpeg, with minimal manual steps.
+
+## Prerequisites
+
+* Ubuntu/Debian system
+* Python 3.8 or higher
+* pip
+* ffmpeg
+* xdotool
+* Xvfb (virtual frame buffer)
+
+## Installation
+
+1. Update package lists and install OS tools:
+
+   ```bash
+   sudo apt update
+   sudo apt install -y python3 python3-pip ffmpeg xdotool xvfb
+   ```
+2. Install Python dependencies:
+
+   ```bash
+   pip3 install pyppeteer
+   ```
+3. Start a headless display:
+
+   ```bash
+   Xvfb :99 -screen 0 1920x1080x24 &
+   export DISPLAY=":99"
+   ```
+
+## Usage
+
+Run the script with a Zoom meeting URL:
+
+```bash
+python3 join_and_record.py <zoom_url>
+```
+
+* Replace `<zoom_url>` with the full meeting link.
+* Check `debug_output/` for screenshots and HTML snapshots.
+
+## Configuration
+
+* **DISPLAY**: Change if you use a different display number.
+* **RECORD\_DURATION**: Set how many seconds to record.
+* **NAME\_TO\_ENTER**: Set the name that appears in browser join.
+
+## Debugging
+
+* Comment out `await browser.close()` in failure paths to keep browser open.
+* Review `debug_output/` files to see page state.
+* Watch console logs for step-by-step status.
+
+## License
+
+MIT
